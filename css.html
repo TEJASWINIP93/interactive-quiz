@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html >
+<head>
+<title>Interactive Quiz</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+color:"green";
+    }
+    .quiz-container {
+        background: url("quiz1.jpg");
+background-size: 1000px,500px;
+
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 150px;
+        border: 1px solid #50ce37;
+        border-radius: 10px;
+    }
+    .question {
+        font-weight: bold;
+    }
+    .options label {
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="quiz-container">
+    <h1>Interactive Quiz</h1><hz>
+    <form id="quiz-form">
+        <div class="question">1:What is the full form of css?</div>
+        <div class="options">
+            <label><input type="radio" name="q1" value="a">a)cascading style sheets</label>
+            <label><input type="radio" name="q1" value="b">b)cascading selector sheets </label>
+            <label><input type="radio" name="q1" value="c">c)cascading scalar sheets</label>
+            <label><input type="radio" name="q1" value="d">d)coloured styling sheets</label>
+
+        </div>
+
+        <div class="question">2: how can we change the background color of an element ?</div>
+        <div class="options">
+            <label><input type="radio" name="q2" value="a">a)background-color</label>
+            <label><input type="radio" name="q2" value="b">b)color </label>
+            <label><input type="radio" name="q2" value="c">c) both a and b</label>
+            <label><input type="radio" name="q2" value="c">c)none</label>
+        </div>
+
+        <div class="question">3:which of the following property is used to align the items in table?</div>
+        <div class="options">
+            <label><input type="radio" name="q3" value="a">a) align</label>
+            <label><input type="radio" name="q3" value="b">b) text-align </label>
+            <label><input type="radio" name="q3" value="c">c) items-align</label>
+            <label><input type="radio" name="q3" value="c">c) none</label>
+        </div>
+
+        <button type="button" id="submit-button">Submit </button>
+    </form>
+    <div id="result"></div>
+</div>
+
+<script>
+    document.getElementById('submit-button').addEventListener('click', function() {
+        const form = document.getElementById('quiz-form');
+        const answers = {
+            q1: form.q1.value,
+            q2: form.q2.value,
+            q3: form.q3.value
+        };
+
+        const correctAnswers = {
+            q1: 'a',
+            q2: 'a',
+            q3: 'b'
+        };
+
+        let score = 0;
+        for (const question in answers) {
+            if (answers[question] === correctAnswers[question]) {
+                score++;
+            }
+        }
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `You scored ${score} out of ${Object.keys(correctAnswers).length} correct.`;
+    });
+</script>
+</body>
+</html>

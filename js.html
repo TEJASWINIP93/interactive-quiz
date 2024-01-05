@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html >
+<head>
+<title>Interactive Quiz</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+color:"green";
+    }
+    .quiz-container {
+        background: url("quiz1.jpg");
+background-size: 1000px,500px;
+
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 150px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
+    .question {
+        font-weight: bold;
+    }
+    .options label {
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="quiz-container">
+    <h1>Interactive Quiz</h1><hz>
+    <form id="quiz-form">
+        <div class="question">1:which type of javascript language is ?</div>
+        <div class="options">
+            <label><input type="radio" name="q1" value="a">a) object-oriented</label>
+            <label><input type="radio" name="q1" value="b">b) object based</label>
+            <label><input type="radio" name="q1" value="c">c) Assembly language</label>
+            <label><input type="radio" name="q1" value="d">d) procedural</label>
+        </div>
+
+        <div class="question">2:which of the following keywords is used to define a variable in javascript?</div>
+        <div class="options">
+            <label><input type="radio" name="q2" value="a">a)var</label>
+            <label><input type="radio" name="q2" value="b">b)let </label>
+            <label><input type="radio" name="q2" value="c">c) both a and b</label>
+            <label><input type="radio" name="q2" value="d">d) none</label>
+        </div>
+
+        <div class="question">3:upon encountering empty statements,what does the javascript interpreter do?</div>
+        <div class="options">
+            <label><input type="radio" name="q3" value="a">a) throws an error</label>
+            <label><input type="radio" name="q3" value="b">b) ignores the statements</label>
+            <label><input type="radio" name="q3" value="c">c) gives a warning</label>
+            <label><input type="radio" name="q3" value="d">d) none of the above</label>
+        </div>
+
+        <button type="button" id="submit-button">Submit </button>
+    </form>
+    <div id="result"></div>
+</div>
+
+<script>
+    document.getElementById('submit-button').addEventListener('click', function() {
+        const form = document.getElementById('quiz-form');
+        const answers = {
+            q1: form.q1.value,
+            q2: form.q2.value,
+            q3: form.q3.value
+        };
+
+        const correctAnswers = {
+            q1: 'a',
+            q2: 'c',
+            q3: 'b'
+        };
+
+        let score = 0;
+        for (const question in answers) {
+            if (answers[question] === correctAnswers[question]) {
+                score++;
+            }
+        }
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `You scored ${score} out of ${Object.keys(correctAnswers).length} correct.`;
+    });
+</script>
+</body>
+</html>

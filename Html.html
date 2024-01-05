@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html >
+<head>
+<title>Interactive Quiz</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+color:"green";
+    }
+    .quiz-container {
+        background: url("quiz1.jpg");
+background-size: 1000px,500px;
+
+        max-width: 1500px;
+        margin: 0 auto;
+        padding: 150px;
+        border: 1px solid #1a3d6b;
+        border-radius: 10px;
+    }
+    .question {
+        font-weight: bold;
+    }
+    .options label {
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="quiz-container">
+    <h1>Interactive Quiz</h1><hz>
+    <form id="quiz-form">
+        <div class="question">1:What does HTML stands for ?</div>
+        <div class="options">
+            <label><input type="radio" name="q1" value="a">a) Hyper Text Markup Language</label>
+            <label><input type="radio" name="q1" value="b">b) Hyper Tested Markup Language</label>
+            <label><input type="radio" name="q1" value="c">c) High Text Markup Language</label>
+            <label><input type="radio" name="q1" value="d">d) High Test Markup Language</label>
+        </div>
+
+        <div class="question">2: Which HTML property is used to set the height of an element?</div>
+        <div class="options">
+            <label><input type="radio" name="q2" value="a">a) dimension</label>
+            <label><input type="radio" name="q2" value="b">b) width</label>
+            <label><input type="radio" name="q2" value="c">c) height</label>
+            <label><input type="radio" name="q2" value="d">d) size</label>
+        </div>
+
+        <div class="question">3:Which is used to read an HTML page and render it? ?</div>
+        <div class="options">
+            <label><input type="radio" name="q3" value="a">a) web browser</label>
+            <label><input type="radio" name="q3" value="b">b) applications</label>
+            <label><input type="radio" name="q3" value="c">c) sever</label>
+            <label><input type="radio" name="q3" value="d">d) sever</label>
+        </div>
+
+        <button type="button" id="submit-button">Submit </button>
+    </form>
+    <div id="result"></div>
+</div>
+
+<script>
+    document.getElementById('submit-button').addEventListener('click', function() {
+        const form = document.getElementById('quiz-form');
+        const answers = {
+            q1: form.q1.value,
+            q2: form.q2.value,
+            q3: form.q3.value
+        };
+
+        const correctAnswers = {
+            q1: 'a',
+            q2: 'c',
+            q3: 'a'
+        };
+
+        let score = 0;
+        for (const question in answers) {
+            if (answers[question] === correctAnswers[question]) {
+                score++;
+            }
+        }
+        const resultDiv = document.getElementById('result');
+        resultDiv.innerHTML = `You scored ${score} out of ${Object.keys(correctAnswers).length} correct.`;
+    });
+</script>
+</body>
+</html>

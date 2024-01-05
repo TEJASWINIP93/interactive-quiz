@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Quiz</title>
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align:center;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url(quizz.jpeg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-size: 20px;
+            text-align: center;
+            align-items: center;
+        }
+        .question-container {
+            display: none;
+            max-width: 800px;
+            max-height: max-content;
+        }
+        .submit-btn {
+            margin-top: 10px;
+        }
+    </style>
+    </head>
+    <body>
+        
+        <div class="quiz-container" id="welcome">
+            <h1>Welcome to the Quiz</h1>
+            <p>Test your knowledge with our quiz!</p>
+            <button onclick="startQuiz()">start Quiz</button>
+            
+        </div>
+
+            <div class="quiz-container question-container" id="question1">
+            <h2>Question 1:</h2>
+            <p>What is HTML?</p>
+            <input type="radio" name="q1" value="a">a) HTML describes the structure of a webpage<br>
+            <input type="radio" name="q1" value="b">b) HTML is the standard markup Language mainly used to create web pages<br>
+            <input type="radio" name="q1" value="c">c) HTML consists of a set of elements that helps the browser how to view the content<br>
+            <input type="radio" name="q1" value="d">d) All of the Mentioned<br>
+            <button onclick="submitAnswer(1)" class="submit-btn">Submit</button>
+        </div>
+    
+        <div class="quiz-container question-container" id="question2">
+            <h2>Question 2:</h2>
+            <p>HTML stands for________?</p>
+            <input type="radio" name="q2" value="a">a) HyperText Markup Language<br>
+            <input type="radio" name="q2" value="b">b) HyperText Machine Language<br>
+            <input type="radio" name="q2" value="c">c) HyperText Marking Language<br>
+            <input type="radio" name="q2" value="d">d) HyperText Marking Language<br>
+            <button onclick="submitAnswer(2)" class="submit-btn">Submit</button>
+        </div>
+    
+        <div class="quiz-container question-container" id="question3">
+            <h2>Question 3:</h2>
+            <p>Which of the following is used to read an HTML page and render it?</p>
+            <input type="radio" name="q3" value="a">a) Web Server<br>
+            <input type="radio" name="q3" value="b">b) Web Browser<br>
+            <input type="radio" name="q3" value="c">c) Web Network<br>
+            <input type="radio" name="q3" value="d">d) Web Matrix<br>
+            <button onclick="submitAnswer(3)" class="submit-btn">Submit</button>
+        </div>
+    
+        <div class="quiz-container" id="result" style="display: none;">
+            <h2>Quiz Results</h2>
+            <p id="score">Your score: 0</p>
+        </div>
+
+    
+        <script>
+            let currentQuestion = 0;
+            let score = 0;
+    
+            function startQuiz() {
+                document.getElementById("welcome").style.display = "none";
+                showQuestion(currentQuestion);
+            }
+    
+            function showQuestion(questionNumber) {
+                const questions = document.querySelectorAll(".question-container");
+                if (questionNumber >= questions.length) {
+                    showResult();
+                } else {
+                    questions.forEach(question => question.style.display = "none");
+                    questions[questionNumber].style.display = "block";
+                }
+            }
+    
+            function submitAnswer(questionNumber) {
+                const selectedAnswer = document.querySelector(`input[name="q${questionNumber}"]:checked`);
+                if (selectedAnswer) {
+                    const answerValue = selectedAnswer.value;
+                    if (questionNumber === 1 && answerValue === "d") {
+                        score++;
+                    }
+                    if (questionNumber === 2 && answerValue === "a") {
+                        score++;
+                    }
+                    if (questionNumber === 3 && answerValue === "b") {
+                        score++;
+                    }
+                    currentQuestion++;
+                    showQuestion(currentQuestion);
+                } else {
+                    alert("Please select an answer.");
+                }
+            }
+    
+            function showResult() {
+                const resultContainer = document.getElementById("result");
+                const scoreDisplay = document.getElementById("score");
+                scoreDisplay.textContent = `Your score: ${score} out of 3`;
+                resultContainer.style.display = "block";
+            }
+        </script>
+    </div>
+    </body>
+</html>
